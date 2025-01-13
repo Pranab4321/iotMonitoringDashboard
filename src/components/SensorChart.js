@@ -106,7 +106,7 @@ function SensorChart() {
   };
 
   return (
-    <section style={{ margin: '3rem auto', maxWidth: '1000px', padding: '20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+    <section id="sensor-chart" style={{ margin: '3rem auto', maxWidth: '1000px', padding: '20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
       <div className="chart-box" style={{ width: 'calc(50% - 20px)', margin: '10px', textAlign: 'center', boxSizing: 'border-box' }}>
         <h3>Temperature (°C)</h3>
         <canvas ref={chartRefs.temperature} style={{ height: '180px', width: '100%' }}></canvas>
