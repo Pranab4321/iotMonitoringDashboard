@@ -1,14 +1,3 @@
-// import React from 'react';
-
-// const Navbar = () => {
-//   return (
-//     <nav>
-//       <h1>IoT Monitoring Dashboard</h1>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
 import React from 'react';
 
 function Navbar() {
