@@ -1,60 +1,20 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
-// function IoTMonitor() {
-//   const [sensorData, setSensorData] = useState({ temperature: [], humidity: [] });
-//   const [error, setError] = useState("");
-
-//   useEffect(() => {
-//     const fetchSensorData = async () => {
-//       try {
-//         const response = await axios.get("http://localhost:5000/api/sensors");
-//         setSensorData(response.data);
-//       } catch (err) {
-//         console.error(err);
-//         setError("Error fetching sensor data");
-//       }
-//     };
-
-//     fetchSensorData();
-
-//     // Optionally, fetch data every 5 seconds
-//     const interval = setInterval(fetchSensorData, 5000);
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Live Sensor Data</h2>
-//       {error ? (
-//         <p style={{ color: "red" }}>{error}</p>
-//       ) : (
-//         <div>
-//           <p>Temperature: {sensorData.temperature.join(", ")}°C</p>
-//           <p>Humidity: {sensorData.humidity.join(", ")}%</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default IoTMonitor;
-
-//3333333333333
 import React, { useState, useEffect } from 'react';
 
 function IoTMonitor() {
-  const [temperature, setTemperature] = useState('--');
-  const [humidity, setHumidity] = useState('--');
-  const [nitrogenLevel, setNitrogenLevel] = useState('--');
-  const [soilMoisture, setSoilMoisture] = useState('--');
+  const [temperature, setTemperature] = useState(23.00);
+  const [humidity, setHumidity] = useState(69.80);
+  const [soilMoisture, setSoilMoisture] = useState(4095);
+  const [tdsLevel, setTdsLevel] = useState(877.42);
+  const [pressure, setPressure] = useState(1013.59);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTemperature((20 + Math.random() * 10).toFixed(1));
-      setHumidity((40 + Math.random() * 20).toFixed(1));
-      setNitrogenLevel((50 + Math.random() * 50).toFixed(1));
-      setSoilMoisture((50 + Math.random() * 50).toFixed(1));
+      // Generate nearby values for each sensor reading
+      setTemperature(prev => (parseFloat((Math.random() * 0.2 + prev - 0.1).toFixed(2))));
+      setHumidity(prev => (parseFloat((Math.random() * 2 + prev - 1).toFixed(2))));
+      setSoilMoisture(4095); // Static value for soil moisture
+      setTdsLevel(prev => (parseFloat((Math.random() * 10 + prev - 5).toFixed(2))));
+      setPressure(prev => (parseFloat((Math.random() * 0.02 + prev - 0.01).toFixed(2))));
     }, 2000);
 
     return () => clearInterval(interval);
@@ -63,20 +23,24 @@ function IoTMonitor() {
   return (
     <section id="iot-monitor" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '2rem' }}>
       <div className="card" style={cardStyle}>
-        <h3>Temperature</h3>
-        <p>{temperature} &deg;C</p>
+        <h3>Soil Moisture</h3>
+        <p>{soilMoisture}</p>
       </div>
       <div className="card" style={cardStyle}>
         <h3>Humidity</h3>
-        <p>{humidity} %</p>
+        <p>{humidity.toFixed(2)} %</p>
       </div>
       <div className="card" style={cardStyle}>
-        <h3>Nitrogen Level</h3>
-        <p>{nitrogenLevel} %</p>
+        <h3>Temperature</h3>
+        <p>{temperature.toFixed(2)} &deg;C</p>
       </div>
       <div className="card" style={cardStyle}>
-        <h3>Soil Moisture</h3>
-        <p>{soilMoisture} %</p>
+        <h3>Pressure</h3>
+        <p>{pressure.toFixed(2)} hPa</p>
+      </div>
+      <div className="card" style={cardStyle}>
+        <h3>TDS Level</h3>
+        <p>{tdsLevel.toFixed(2)} ppm</p>
       </div>
     </section>
   );
@@ -87,10 +51,12 @@ const cardStyle = {
   border: '1px solid #ddd',
   borderRadius: '8px',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  margin: '1rem',
-  width: '300px',
-  padding: '1.5rem',
+  margin: '0.5rem',
+  width: '250px',
+  height: '150px',
+  padding: '1rem',
   textAlign: 'center',
 };
 
 export default IoTMonitor;
+
