@@ -1,3 +1,134 @@
-.m-page{
-    background-color: rgb(227, 245, 240);
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.App {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar {
+  background-color: #28a745;
+  padding: 15px 30px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #e0e0e0;
+}
+
+.main-content {
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.iot-monitor {
+  margin-top: 30px;
+}
+
+.sensor-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+}
+
+.stat-card .card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.stat-card .card-value {
+  font-size: 32px;
+  color: #28a745;
+  margin-top: 10px;
+}
+
+.sensor-chart {
+  margin-top: 30px;
+  width: 80%;
+  height: 400px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sensor-chart canvas {
+  width: 100% !important;
+  height: 300px !important;
+  max-height: 400px;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sensor-stats {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .sensor-chart {
+    width: 95%;
+  }
 }
