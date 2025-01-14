@@ -20,6 +20,9 @@ mongoose
 const sensorSchema = new mongoose.Schema({
   temperature: { type: Number, required: true },
   humidity: { type: Number, required: true },
+  soilMoisture: { type: Number, required: true },
+  pressure: { type: Number, required: true },
+  tds: { type: Number, required: true },
   timestamp: { type: Date, default: Date.now },
 });
 
@@ -38,14 +41,14 @@ app.get("/api/sensors", async (req, res) => {
 
 // Route to post new sensor data
 app.post("/api/sensors", async (req, res) => {
-  const { temperature, humidity } = req.body;
+  const { temperature, humidity, soilMoisture, pressure, tds } = req.body;
 
-  if (temperature == null || humidity == null) {
-    return res.status(400).json({ error: "Temperature and humidity are required" });
+  if (temperature == null || humidity == null || soilMoisture == null || pressure == null || tds == null) {
+    return res.status(400).json({ error: "All sensor fields are required" });
   }
 
   try {
-    const newSensorData = new SensorData({ temperature, humidity });
+    const newSensorData = new SensorData({ temperature, humidity, soilMoisture, pressure, tds });
     await newSensorData.save();
     res.json({ message: "Sensor data saved successfully", data: newSensorData });
   } catch (err) {
